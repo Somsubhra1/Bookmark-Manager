@@ -69,6 +69,9 @@ body {
 .marketing {
   margin: 3rem 0;
 }
+#bookmarksResults .card {
+  margin-bottom: 20px;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 48em) {
