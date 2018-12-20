@@ -64,15 +64,27 @@ body {
   padding: 0.75rem 1.5rem;
   font-size: 1.2rem;
 }
-
-/* Supporting marketing content */
-.marketing {
-  margin: 3rem 0;
-}
 #bookmarksResults .card {
-  margin-bottom: 20px;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.card {
+  width: 100%;
+  text-align: center;
+}
+.col-sm {
+  text-align: center;
+  margin: 0 10px;
 }
 
+#bookmarksResults h3,
+a,
+button {
+  text-align: center;
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 48em) {
   /* Remove the padding we set earlier */
@@ -95,5 +107,11 @@ body {
 @media screen and (max-width: 48em) {
   .jumbotron i {
     padding-top: 8%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .col-sm {
+    margin-bottom: 15px;
   }
 }
