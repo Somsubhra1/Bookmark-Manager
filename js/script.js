@@ -72,7 +72,7 @@ function fetchBookmarks() {
       url = "http://www." + url;
     }
     document.getElementById("notfound").style.display = "none";
-    
+
     // designing output
     bookmarksResult.innerHTML += `<div class="card card-body bg-light row" id=${name.toLowerCase()}><div class="col-sm"><h3>${name}</h3></div><div class="col-sm"><a class="btn btn-primary visitBtn" target="__blank" href=${url}>Visit</a></div><div class="col-sm"><button class="btn btn-danger deleteBtn" onClick="deleteBookmark(\'${url}\')">Delete</button></div></div>`;
   }
@@ -126,6 +126,12 @@ function searchBookmark(event) {
   if (!searchVal) {
     fetchBookmarks();
   }
+
+  if (bookmarks.length === 0) {
+    document.getElementById("notfound").innerHTML = "No bookmarks to search!!";
+    document.getElementById("notfound").style.display = "";
+    return false;
+  }
   var count = 0;
   for (let index = 0; index < bookmarks.length; index++) {
     // searching the specified bookmark
@@ -147,6 +153,7 @@ function searchBookmark(event) {
 
   // not found check
   if (count === bookmarks.length) {
+    document.getElementById("notfound").innerHTML = "Not Found";
     document.getElementById("notfound").style.display = "";
   }
 
