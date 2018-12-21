@@ -73,6 +73,9 @@ hr {
 .searchForm * {
   margin: 0 15px;
 }
+#searchBox label {
+  font-weight: bold;
+}
 .footer {
   margin-top: 20px;
 }
@@ -125,5 +128,22 @@ button {
 @media screen and (max-width: 570px) {
   .col-sm {
     margin-bottom: 15px;
+  }
+  .searchForm * {
+    width: 60%;
+    margin-bottom: 20px;
+  }
+  .searchForm label {
+    font-size: 1.5em;
+  }
+  .searchForm input {
+    margin: 0 auto;
+    width: 100%;
+  }
+  #searchButton {
+    margin-top: 20px;
+  }
+  #searchBox > .form-group {
+    margin: 5px;
   }
 }
