@@ -1,6 +1,8 @@
 // event listener for form submit
 
 document.getElementById("myForm").addEventListener("submit", saveBookmark);
+document.getElementById("searchBox").addEventListener("keyup", searchBookmark);
+document.getElementById("searchBox").addEventListener("submit", searchBookmark);
 
 function saveBookmark(event) {
   event.preventDefault(); // prevents default behaviour of form submit
@@ -52,7 +54,6 @@ function saveBookmark(event) {
 function fetchBookmarks() {
   // get bookmarks from localStorage
   var bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-  console.log(bookmarks);
 
   // output object
   var bookmarksResult = document.getElementById("bookmarksResults");
@@ -72,13 +73,12 @@ function fetchBookmarks() {
     }
     // TODO: Design the output
     // designing output
-    bookmarksResult.innerHTML += `<div class="card card-body bg-light row"><div class="col-sm"><h3>${name}</h3></div><div class="col-sm"><a class="btn btn-primary visitBtn" target="__blank" href=${url}>Visit</a></div><div class="col-sm"><button class="btn btn-danger deleteBtn" onClick="deleteBookmark(\'${url}\')">Delete</button></div></div>`;
+    bookmarksResult.innerHTML += `<div class="card card-body bg-light row" id=${name.toLowerCase()}><div class="col-sm"><h3>${name}</h3></div><div class="col-sm"><a class="btn btn-primary visitBtn" target="__blank" href=${url}>Visit</a></div><div class="col-sm"><button class="btn btn-danger deleteBtn" onClick="deleteBookmark(\'${url}\')">Delete</button></div></div>`;
   }
 }
 
 // delete bookmarks
 function deleteBookmark(url) {
-  console.log(url);
   var bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
   //loop through bookmarks
   for (let index = 0; index < bookmarks.length; index++) {
@@ -106,4 +106,51 @@ function validateFormInput(siteName, siteURL) {
     return false;
   }
   return true;
+}
+
+// search bookmark
+function searchBookmark(event) {
+  // prevent default form submition
+  if (event.type === "submit") {
+    event.preventDefault();
+  }
+
+  //getting search value:
+  var searchVal = document.getElementById("searchInput").value.toString();
+
+  // get bookmarks from localStorage
+  var bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+
+  // automatically fetching bookmarks if search value is null
+  if (!searchVal) {
+    fetchBookmarks();
+  }
+  var count = 0;
+  for (let index = 0; index < bookmarks.length; index++) {
+    // searching the specified bookmark
+    if (
+      !bookmarks[index].name.toLowerCase().includes(searchVal.toLowerCase())
+    ) {
+      document.getElementById(
+        bookmarks[index].name.toLowerCase()
+      ).style.display = "none";
+      count++;
+    }
+    if (bookmarks[index].name.toLowerCase().includes(searchVal.toLowerCase())) {
+      document.getElementById(
+        bookmarks[index].name.toLowerCase()
+      ).style.display = "";
+      document.getElementById("notfound").style.display = "none";
+    }
+  }
+
+  // not found check
+  if (count === bookmarks.length) {
+    document.getElementById("notfound").style.display = "";
+  }
+
+  // reseting the input box
+  if (event.type === "submit") {
+    document.getElementById("searchInput").value = "";
+  }
 }

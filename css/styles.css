@@ -64,6 +64,18 @@ body {
   padding: 0.75rem 1.5rem;
   font-size: 1.2rem;
 }
+hr {
+  margin-bottom: 20px;
+}
+.searchForm {
+  justify-content: center;
+}
+.searchForm * {
+  margin: 0 15px;
+}
+.footer {
+  margin-top: 20px;
+}
 #bookmarksResults .card {
   margin: 0 auto;
   margin-bottom: 1.5rem;
