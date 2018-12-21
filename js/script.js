@@ -71,7 +71,8 @@ function fetchBookmarks() {
     } else if (!url.includes("www")) {
       url = "http://www." + url;
     }
-    // TODO: Design the output
+    document.getElementById("notfound").style.display = "none";
+    
     // designing output
     bookmarksResult.innerHTML += `<div class="card card-body bg-light row" id=${name.toLowerCase()}><div class="col-sm"><h3>${name}</h3></div><div class="col-sm"><a class="btn btn-primary visitBtn" target="__blank" href=${url}>Visit</a></div><div class="col-sm"><button class="btn btn-danger deleteBtn" onClick="deleteBookmark(\'${url}\')">Delete</button></div></div>`;
   }
